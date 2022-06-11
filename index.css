@@ -1,6 +1,7 @@
 .hanged {
-    background-image: url("./assets/table.jpg");
+    background-image: url("./assets/verticalTable.jpg");
     background-size: cover;
+    background-position: center;
     font-family: 'Permanent Marker', cursive;
 }
 
@@ -14,14 +15,13 @@ main {
     margin: 2rem;
 }
 
-.hanged main .containButtons img{
-    width: 17rem;
-    height: 7rem;
+.hanged main .containButtons svg{
+    width: 7rem;
     margin: 1rem;
 }
 
 
-.hanged main .containButtons img:hover{
+.hanged main .containButtons svg:hover{
     filter: drop-shadow(0px 0px 7px white);
     cursor: pointer;
 }
@@ -41,7 +41,7 @@ main {
 }
 
 .hanged main .game #svg {
-    width: 20rem;
+    width: 5rem;
     height: 50vh;
 }
 
@@ -76,8 +76,12 @@ main {
     position: absolute;
     bottom: 5px;
     display: flex;
-    width: 15rem;
+    width: 20rem;
     justify-content: space-around;
+}
+
+.hanged footer a{
+    text-decoration: none;
     color: white;
-    font-size: 1.5rem;
+    font-size: 2rem;
 }
