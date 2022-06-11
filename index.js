@@ -14,42 +14,38 @@ function $(elem) {
     return document.querySelector(elem)
 }
 
-function eliminarDiacriticosEs(texto) {
-    return texto
+function removeDiacritics(text) {
+    return text
            .normalize('NFD')
            .replace(/([^n\u0300-\u036f]|n(?!\u0303(?![\u0300-\u036f])))[\u0300-\u036f]+/gi,"$1")
            .normalize();
 }
 
 const addWords = () => {
-    let word = prompt("Ingrese una palabra. Max 18 characters, min 2 characters")
+    let word = prompt("Please enter a word. Max 18 characters, min 2 characters, no numbers or spaces")
     if(word && word.length <= 18 && word.length > 2) {
         for (let i = 0; i < word.length; i++) {
             if(Number(word[i]) || word[i] === " ") {
-                alert("Los numeros y espacios no son validos")
+                alert("no numbers or spaces")
                 return
             }
         }
-        words.push(eliminarDiacriticosEs(word).toUpperCase(word))
+        words.push(removeDiacritics(word).toUpperCase(word))
     } else {
-        alert("palabra incorrecta. Max 18 characters, min 2 characters")
+        alert("You must enter one or more words")
     }
 }
 
 function onKeyDownHandler(event) {
 
+    var code = event.which || event.keyCode;
     
-    var codigo = event.which || event.keyCode;
-    
-    console.log("Presionada: " + codigo);
-    
-    console.log(search)
-    if(codigo >= 65 && codigo <= 90 || codigo === 192){
+    if(code >= 65 && code <= 90 || code === 192){
         if(search && count > 0) {
-            if(search.includes(String.fromCharCode(codigo)) || search.includes("Ñ")) {
+            if(search.includes(String.fromCharCode(code)) || search.includes("Ñ")) {
                 str = ""
                 for (let index = 0; index < search.length; index++) {
-                    if(search[index] === String.fromCharCode(codigo) && $correct.innerText[index] === "_" || search[index] === "Ñ") {
+                    if(search[index] === String.fromCharCode(code) && $correct.innerText[index] === "_" || search[index] === "Ñ") {
                         str += search[index]
                     } else if($correct.innerText[index] !== "_") {
                         str += search[index]
@@ -69,14 +65,14 @@ function onKeyDownHandler(event) {
                     $incorrect.style.color = "blue"
                 }
                 console.log($correct.innerText)
-            } else if ($incorrect.innerText.includes(String.fromCharCode(codigo))) {
-                alert("REPETIDA")
+            } else if ($incorrect.innerText.includes(String.fromCharCode(code))) {
+                alert("Repeated Letter")
             } else {
-                $incorrect.innerText += codigo === 192 ? ` Ñ ` : ` ${String.fromCharCode(codigo)} `
+                $incorrect.innerText += code === 192 ? ` Ñ ` : ` ${String.fromCharCode(code)} `
                 count--
             }
         } else if(search && $correct.innerHTML !== "GAME OVER") {
-            $incorrect.innerText += ` ${String.fromCharCode(codigo)} `
+            $incorrect.innerText += ` ${String.fromCharCode(code)} `
             $correct.innerHTML = "GAME OVER"
             $correct.style.color = "red"
             $solution.style.display = "inline"
