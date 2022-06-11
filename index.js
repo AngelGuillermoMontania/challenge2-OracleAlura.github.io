@@ -72,11 +72,6 @@ function onKeyDownHandler(event) {
                 count--
             }
         } else if(search && $correct.innerHTML !== "GAME OVER") {
-            $incorrect.innerText += ` ${String.fromCharCode(code)} `
-            $correct.innerHTML = "GAME OVER"
-            $correct.style.color = "red"
-            $solution.style.display = "inline"
-            $solution.innerText += search
             count--
         } else {
             return
@@ -130,6 +125,10 @@ function onKeyDownHandler(event) {
                 easing: "linear",
                 duration: 1000,
             })
+            $correct.innerHTML = "GAME OVER"
+            $correct.style.color = "red"
+            $solution.style.display = "inline"
+            $solution.innerText += search
         }
     }
     
