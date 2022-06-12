@@ -169,6 +169,41 @@ const startGame = () => {
     }
 }
 
+const reStart = () => {
+    if(words.length <= 0) {
+        addWords()
+    } else {
+        $correct.innerText = ""
+        search = ""
+        $incorrect.innerText = ""
+        $correct.style.color = "white"
+        $solution.style.display = "none"
+        $solution.innerText = ""
+        $solution.style.color = "white"
+        $solution.innerText = ""
+        $incorrect.style.display = "inline"
+        $incorrect.style.color = "white"
+        $incorrect.innerText = ""
+        count = 6
+        let i = Math.floor(Math.random() * words.length)
+        for (let index = 0; index < words[i].length; index++) {
+            $correct.innerText += "_"
+        }
+        search += words[i]
+        $correct.style.display = "block"
+        $start.style.display = "none"
+        $reStart.style.display = "block"
+        $svg.innerHTML = ""
+        $svg.innerHTML += '<path id="structure" d="M6.80123 726.711C14.1397 673.048 24.5804 619.52 32.9369 565.972C52.1281 442.997 72.1529 320.233 89.6339 196.983C98.4808 134.607 105.995 72.0127 116.354 9.85769C117.049 5.6856 119.699 7.08718 123.702 7.43617C153.913 10.0699 184.082 12.4897 214.384 13.9492C254.415 15.8773 294.468 16.7768 334.541 17.1222C370.285 17.4304 406.664 18.7608 442.341 15.7027C455.532 14.5721 457.026 9.71601 455.534 25.3053C452.331 58.7537 448.241 92.1328 445.013 125.59C444.296 133.02 442.675 140.568 442.675 148.051" stroke="white" stroke-width="12" stroke-linecap="round"/>'
+        anime({
+            targets: "#svg #structure",
+            strokeDashoffset: [anime.setDashoffset, 0],
+            easing: "linear",
+            duration: 1000,
+        })
+    }
+}
+
 window.onload = () => {
 
     anime({
